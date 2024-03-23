@@ -39,12 +39,29 @@ namespace WinFormsProject.DAO
                 Table table = new Table(row); 
                 tableList.Add(table);
             }
-
-
             return tableList;
         }
 
+        public bool InsertTable(string name)
+        {
+            string query = string.Format("INSERT INTO[dbo].[TableFood] ([name]) values(N'{0}')", name);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
 
+        public bool UpdateTable(int id, string name)
+        {
+            string query = string.Format("UPDATE[dbo].[TableFood] SET[name] = N'{0}'  WHERE id = {1} ", name, id);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool DeleteTable(int id)
+        {
+            string query = string.Format("delete [TableFood] WHERE id = {0} ", id);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
 
     }
 }

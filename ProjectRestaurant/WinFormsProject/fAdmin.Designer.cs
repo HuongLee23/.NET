@@ -68,7 +68,7 @@
             tpFoodCategory = new TabPage();
             panel14 = new Panel();
             panel17 = new Panel();
-            textBox2 = new TextBox();
+            txtCategoryName = new TextBox();
             label7 = new Label();
             panel18 = new Panel();
             txtCategoryID = new TextBox();
@@ -92,7 +92,7 @@
             txtTableID = new TextBox();
             label6 = new Label();
             panel15 = new Panel();
-            dataGridView1 = new DataGridView();
+            dtgvTable = new DataGridView();
             panel13 = new Panel();
             btnDeleteTable = new Button();
             btnEditTable = new Button();
@@ -146,7 +146,7 @@
             panel19.SuspendLayout();
             panel20.SuspendLayout();
             panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvTable).BeginInit();
             panel13.SuspendLayout();
             tpAccount.SuspendLayout();
             panel24.SuspendLayout();
@@ -546,20 +546,19 @@
             // 
             // panel17
             // 
-            panel17.Controls.Add(textBox2);
+            panel17.Controls.Add(txtCategoryName);
             panel17.Controls.Add(label7);
             panel17.Location = new Point(3, 64);
             panel17.Name = "panel17";
             panel17.Size = new Size(316, 55);
             panel17.TabIndex = 2;
             // 
-            // textBox2
+            // txtCategoryName
             // 
-            textBox2.Location = new Point(182, 10);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(131, 31);
-            textBox2.TabIndex = 1;
+            txtCategoryName.Location = new Point(182, 10);
+            txtCategoryName.Name = "txtCategoryName";
+            txtCategoryName.Size = new Size(131, 31);
+            txtCategoryName.TabIndex = 1;
             // 
             // label7
             // 
@@ -608,6 +607,7 @@
             // 
             // dtgvCategory
             // 
+            dtgvCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvCategory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvCategory.Location = new Point(3, 3);
             dtgvCategory.Name = "dtgvCategory";
@@ -635,6 +635,7 @@
             btnDeleteCategory.TabIndex = 3;
             btnDeleteCategory.Text = "Xóa";
             btnDeleteCategory.UseVisualStyleBackColor = true;
+            btnDeleteCategory.Click += btnDeleteCategory_Click;
             // 
             // btnEditCategory
             // 
@@ -644,6 +645,7 @@
             btnEditCategory.TabIndex = 2;
             btnEditCategory.Text = "Sửa";
             btnEditCategory.UseVisualStyleBackColor = true;
+            btnEditCategory.Click += btnEditCategory_Click;
             // 
             // btnAddCategory
             // 
@@ -653,6 +655,7 @@
             btnAddCategory.TabIndex = 1;
             btnAddCategory.Text = "Thêm";
             btnAddCategory.UseVisualStyleBackColor = true;
+            btnAddCategory.Click += btnAddCategory_Click;
             // 
             // btnShowCategory
             // 
@@ -662,6 +665,7 @@
             btnShowCategory.TabIndex = 0;
             btnShowCategory.Text = "Xem";
             btnShowCategory.UseVisualStyleBackColor = true;
+            btnShowCategory.Click += btnShowCategory_Click;
             // 
             // tpTable
             // 
@@ -726,7 +730,6 @@
             // 
             txtTableName.Location = new Point(182, 10);
             txtTableName.Name = "txtTableName";
-            txtTableName.ReadOnly = true;
             txtTableName.Size = new Size(131, 31);
             txtTableName.TabIndex = 1;
             // 
@@ -769,21 +772,21 @@
             // 
             // panel15
             // 
-            panel15.Controls.Add(dataGridView1);
+            panel15.Controls.Add(dtgvTable);
             panel15.Location = new Point(6, 68);
             panel15.Name = "panel15";
             panel15.Size = new Size(504, 410);
             panel15.TabIndex = 4;
             // 
-            // dataGridView1
+            // dtgvTable
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(498, 407);
-            dataGridView1.TabIndex = 0;
+            dtgvTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvTable.Location = new Point(3, 3);
+            dtgvTable.Name = "dtgvTable";
+            dtgvTable.RowHeadersWidth = 62;
+            dtgvTable.RowTemplate.Height = 33;
+            dtgvTable.Size = new Size(498, 407);
+            dtgvTable.TabIndex = 0;
             // 
             // panel13
             // 
@@ -804,6 +807,7 @@
             btnDeleteTable.TabIndex = 3;
             btnDeleteTable.Text = "Xóa";
             btnDeleteTable.UseVisualStyleBackColor = true;
+            btnDeleteTable.Click += btnDeleteTable_Click;
             // 
             // btnEditTable
             // 
@@ -813,6 +817,7 @@
             btnEditTable.TabIndex = 2;
             btnEditTable.Text = "Sửa";
             btnEditTable.UseVisualStyleBackColor = true;
+            btnEditTable.Click += btnEditTable_Click;
             // 
             // btnAddTable
             // 
@@ -822,6 +827,7 @@
             btnAddTable.TabIndex = 1;
             btnAddTable.Text = "Thêm";
             btnAddTable.UseVisualStyleBackColor = true;
+            btnAddTable.Click += btnAddTable_Click;
             // 
             // btnShowTable
             // 
@@ -831,6 +837,7 @@
             btnShowTable.TabIndex = 0;
             btnShowTable.Text = "Xem";
             btnShowTable.UseVisualStyleBackColor = true;
+            btnShowTable.Click += btnShowTable_Click;
             // 
             // tpAccount
             // 
@@ -1064,7 +1071,7 @@
             panel20.ResumeLayout(false);
             panel20.PerformLayout();
             panel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvTable).EndInit();
             panel13.ResumeLayout(false);
             tpAccount.ResumeLayout(false);
             panel24.ResumeLayout(false);
@@ -1125,7 +1132,7 @@
         private Button btnShowCategory;
         private Panel panel14;
         private Panel panel17;
-        private TextBox textBox2;
+        private TextBox txtCategoryName;
         private Label label7;
         private Panel panel18;
         private TextBox txtCategoryID;
@@ -1133,7 +1140,7 @@
         private Panel panel12;
         private DataGridView dtgvCategory;
         private Panel panel15;
-        private DataGridView dataGridView1;
+        private DataGridView dtgvTable;
         private Panel panel13;
         private Button btnDeleteTable;
         private Button btnEditTable;

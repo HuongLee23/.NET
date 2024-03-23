@@ -56,5 +56,26 @@ namespace WinFormsProject.DAO
             return c;
 
         }
+
+        public bool InsertCategory(string name)
+        {
+            string query = string.Format("INSERT INTO[dbo].[FoodCategory] ([name]) values(N'{0}')", name);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool UpdateCategory(int id, string name)
+        {
+            string query = string.Format("UPDATE[dbo].[FoodCategory] SET[name] = N'{0}'  WHERE id = {1} ", name, id);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool DeleteCategory(int id)
+        {
+            string query = string.Format("delete [FoodCategory] WHERE id = {0} ", id);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
     }
 }

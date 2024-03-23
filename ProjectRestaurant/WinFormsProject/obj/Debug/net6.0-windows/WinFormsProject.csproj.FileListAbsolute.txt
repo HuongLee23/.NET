@@ -64,3 +64,4 @@ C:\Kỳ 5\PRN211\Project\ProjectRestaurant\WinFormsProject\bin\Debug\net6.0-wind
 C:\Kỳ 5\PRN211\Project\ProjectRestaurant\WinFormsProject\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Kỳ 5\PRN211\Project\ProjectRestaurant\WinFormsProject\obj\Debug\net6.0-windows\WinFormsProject.csproj.AssemblyReference.cache
 C:\Kỳ 5\PRN211\Project\ProjectRestaurant\WinFormsProject\obj\Debug\net6.0-windows\WinFormsProject.csproj.CopyComplete
+C:\Kỳ 5\PRN211\Project\ProjectRestaurant\WinFormsProject\obj\Debug\net6.0-windows\WinFormsProject.sourcelink.json

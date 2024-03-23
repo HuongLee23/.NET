@@ -18,6 +18,10 @@ namespace WinFormsProject
 
         BindingSource accountList = new BindingSource();
 
+        BindingSource categoryList = new BindingSource();
+
+        BindingSource tableList = new BindingSource();
+
         public Account loginAccount;
 
         public fAdmin()
@@ -39,13 +43,22 @@ namespace WinFormsProject
         {
             dtgvFood.DataSource = foodList;
             dtgvAccount.DataSource = accountList;
+            dtgvCategory.DataSource = categoryList;
+            dtgvTable.DataSource = tableList;
+
             LoadDateTimePikerBill();
             LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
             LoadListFood();
             LoadCategoryIntoCombobox(cbFoodCategory);
             LoadAccount();
+            LoadListCategory();
+            LoadListTable();
+
             AddFoodBinding();
             AddAccountBinding();
+            AddCategoryBinding();
+            AddTableBinding();
+
         }
 
         void AddAccountBinding()
@@ -78,7 +91,6 @@ namespace WinFormsProject
             txtFoodID.DataBindings.Add(new Binding("Text", dtgvFood.DataSource, "id", true, DataSourceUpdateMode.Never));
             txtFoodName.DataBindings.Add(new Binding("text", dtgvFood.DataSource, "name", true, DataSourceUpdateMode.Never));
             nmFoodPrice.DataBindings.Add(new Binding("Value", dtgvFood.DataSource, "price", true, DataSourceUpdateMode.Never));
-
         }
 
         void LoadCategoryIntoCombobox(ComboBox cb)
@@ -90,6 +102,26 @@ namespace WinFormsProject
         void LoadListFood()
         {
             foodList.DataSource = FoodDAO.Instance.GetListFood();
+        }
+
+        void AddCategoryBinding()
+        {
+            txtCategoryID.DataBindings.Add(new Binding("Text", dtgvCategory.DataSource, "id", true, DataSourceUpdateMode.Never));
+            txtCategoryName.DataBindings.Add(new Binding("text", dtgvCategory.DataSource, "name", true, DataSourceUpdateMode.Never));
+        }
+        void LoadListCategory()
+        {
+            categoryList.DataSource = CategoryDAO.Instance.GetListCategory();
+        }
+
+        void AddTableBinding()
+        {
+            txtTableID.DataBindings.Add(new Binding("Text", dtgvTable.DataSource, "id", true, DataSourceUpdateMode.Never));
+            txtTableName.DataBindings.Add(new Binding("text", dtgvTable.DataSource, "name", true, DataSourceUpdateMode.Never));
+        }
+        void LoadListTable()
+        {
+            tableList.DataSource = TableDAO.Instance.LoadTableList();
         }
 
         #endregion
@@ -344,6 +376,151 @@ namespace WinFormsProject
             txtPageBill.Text = page.ToString();
         }
 
+        private void btnShowCategory_Click(object sender, EventArgs e)
+        {
+            LoadListCategory();
+        }
+
+        private void btnEditCategory_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txtCategoryID.Text);
+            string name = txtCategoryName.Text;
+
+            if (CategoryDAO.Instance.UpdateCategory(id, name))
+            {
+                MessageBox.Show("Cập nhật danh mục thành công");
+                LoadListCategory();
+                LoadCategoryIntoCombobox(cbFoodCategory);
+                if (updateCategory != null)
+                {
+                    updateCategory(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi cập nhật danh mục!");
+            }
+        }
+
+        //Phần delete Category chưa xử lý xong
+        private void btnDeleteCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(txtCategoryID.Text);
+
+                if (CategoryDAO.Instance.DeleteCategory(id))
+                {
+                    MessageBox.Show("Xóa danh mục thành công");
+                    LoadListCategory();
+                    LoadCategoryIntoCombobox(cbFoodCategory);
+                    if (deleteCategory != null)
+                    {
+                        deleteCategory(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi xóa danh mục!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi xóa danh mục!");
+            }
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            string name = txtCategoryName.Text;
+
+            if (CategoryDAO.Instance.InsertCategory(name))
+            {
+                MessageBox.Show("Thêm danh mục thành công");
+                LoadListCategory();
+                LoadCategoryIntoCombobox(cbFoodCategory);
+                if (insertCategory != null)
+                {
+                    insertCategory(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi thêm danh mục!");
+            }
+        }
+
+        private void btnShowTable_Click(object sender, EventArgs e)
+        {
+            LoadListTable();
+        }
+
+        private void btnAddTable_Click(object sender, EventArgs e)
+        {
+            string name = txtTableName.Text;
+
+            if (TableDAO.Instance.InsertTable(name))
+            {
+                MessageBox.Show("Thêm bàn thành công");
+                LoadListTable();
+                if (insertTable != null)
+                {
+                    insertTable(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi thêm bàns!");
+            }
+        }
+
+        private void btnEditTable_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(txtTableID.Text);
+            string name = txtTableName.Text;
+
+            if (TableDAO.Instance.UpdateTable(id, name))
+            {
+                MessageBox.Show("Cập nhật bàn thành công");
+                LoadListTable();
+                if (updateTable != null)
+                {
+                    updateTable(this, new EventArgs());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi cập nhật bàn!");
+            }
+        }
+
+        private void btnDeleteTable_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(txtTableID.Text);
+
+                if (TableDAO.Instance.DeleteTable(id))
+                {
+                    MessageBox.Show("Xóa bàn thành công");
+                    LoadListTable();
+                    if (deleteTable != null)
+                    {
+                        deleteTable(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi xóa bàn!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi xóa bàn!");
+            }
+        }
+
+        //Event của Foood
         private event EventHandler insertFood;
 
         public event EventHandler InsertFood
@@ -369,25 +546,59 @@ namespace WinFormsProject
         }
 
 
+        //Event của Category
+        private event EventHandler insertCategory;
+
+        public event EventHandler InsertCategory
+        {
+            add { insertCategory += value; }
+            remove { insertCategory -= value; }
+        }
+
+        private event EventHandler updateCategory;
+
+        public event EventHandler UpdateCategory
+        {
+            add { updateCategory += value; }
+            remove { updateCategory -= value; }
+        }
+
+        private event EventHandler deleteCategory;
+
+        public event EventHandler DeleteCategory
+        {
+            add { deleteCategory += value; }
+            remove { deleteCategory -= value; }
+        }
 
 
+
+        //Event của Table
+        private event EventHandler insertTable;
+
+        public event EventHandler InsertTable
+        {
+            add { insertTable += value; }
+            remove { insertTable -= value; }
+        }
+
+        private event EventHandler updateTable;
+
+        public event EventHandler UpdateTable
+        {
+            add { updateTable += value; }
+            remove { updateTable -= value; }
+        }
+
+        private event EventHandler deleteTable;
+
+        public event EventHandler DeleteTable
+        {
+            add { deleteTable += value; }
+            remove { deleteTable -= value; }
+        }
         #endregion
 
-
-
-        //void LoadFoodList()
-        //{
-        //    string query = "select * from Food";
-
-        //    dtgvFood.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        //}
-
-        //void LoadAccountList()
-        //{
-        //    string query = "select * from Account";
-
-        //    dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        //}
 
     }
 

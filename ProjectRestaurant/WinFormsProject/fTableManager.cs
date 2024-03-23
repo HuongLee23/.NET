@@ -55,6 +55,8 @@ namespace WinFormsProject
             cbFood.DisplayMember = "Name";
         }
 
+
+
         void LoadTable()
         {
             flpTable.Controls.Clear();
@@ -147,7 +149,49 @@ namespace WinFormsProject
             f.UpdateFood += f_UpdateFood;
             f.DeleteFood += f_DeleteFood;
 
+            f.InsertCategory += f_InsertCategory;
+            f.UpdateCategory += f_UpdateCategory;
+            f.DeleteCategory += f_DeleteCategory;
+
+            f.InsertTable += f_InsertTable;
+            f.UpdateTable += f_UpdateTable;
+            f.DeleteTable += f_DeleteTable;
+
+
             f.ShowDialog();
+        }
+
+        private void f_DeleteTable(object? sender, EventArgs e)
+        {
+            LoadTable();
+            LoadComboboxTable(cbSwitchTable);
+        }
+
+        private void f_UpdateTable(object? sender, EventArgs e)
+        {
+            LoadTable();
+            LoadComboboxTable(cbSwitchTable);
+        }
+
+        private void f_InsertTable(object? sender, EventArgs e)
+        {
+            LoadTable();
+            LoadComboboxTable(cbSwitchTable);
+        }
+
+        private void f_DeleteCategory(object? sender, EventArgs e)
+        {
+            cbCategory.DataSource = CategoryDAO.Instance.GetListCategory();
+        }
+
+        private void f_UpdateCategory(object? sender, EventArgs e)
+        {
+            cbCategory.DataSource = CategoryDAO.Instance.GetListCategory();
+        }
+
+        private void f_InsertCategory(object? sender, EventArgs e)
+        {
+            cbCategory.DataSource = CategoryDAO.Instance.GetListCategory();
         }
 
         private void f_UpdateFood(object? sender, EventArgs e)
