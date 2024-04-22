@@ -82,9 +82,6 @@
             btnShowCategory = new Button();
             tpTable = new TabPage();
             panel16 = new Panel();
-            panel21 = new Panel();
-            cbTableStatus = new ComboBox();
-            label9 = new Label();
             panel19 = new Panel();
             txtTableName = new TextBox();
             label5 = new Label();
@@ -142,7 +139,6 @@
             panel11.SuspendLayout();
             tpTable.SuspendLayout();
             panel16.SuspendLayout();
-            panel21.SuspendLayout();
             panel19.SuspendLayout();
             panel20.SuspendLayout();
             panel15.SuspendLayout();
@@ -682,40 +678,12 @@
             // 
             // panel16
             // 
-            panel16.Controls.Add(panel21);
             panel16.Controls.Add(panel19);
             panel16.Controls.Add(panel20);
             panel16.Location = new Point(516, 68);
             panel16.Name = "panel16";
             panel16.Size = new Size(322, 410);
             panel16.TabIndex = 6;
-            // 
-            // panel21
-            // 
-            panel21.Controls.Add(cbTableStatus);
-            panel21.Controls.Add(label9);
-            panel21.Location = new Point(3, 125);
-            panel21.Name = "panel21";
-            panel21.Size = new Size(316, 55);
-            panel21.TabIndex = 3;
-            // 
-            // cbTableStatus
-            // 
-            cbTableStatus.FormattingEnabled = true;
-            cbTableStatus.Location = new Point(182, 10);
-            cbTableStatus.Name = "cbTableStatus";
-            cbTableStatus.Size = new Size(131, 33);
-            cbTableStatus.TabIndex = 1;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(3, 10);
-            label9.Name = "label9";
-            label9.Size = new Size(136, 29);
-            label9.TabIndex = 0;
-            label9.Text = "Trạng thái:";
             // 
             // panel19
             // 
@@ -1064,8 +1032,6 @@
             panel11.ResumeLayout(false);
             tpTable.ResumeLayout(false);
             panel16.ResumeLayout(false);
-            panel21.ResumeLayout(false);
-            panel21.PerformLayout();
             panel19.ResumeLayout(false);
             panel19.PerformLayout();
             panel20.ResumeLayout(false);
@@ -1147,9 +1113,6 @@
         private Button btnAddTable;
         private Button btnShowTable;
         private Panel panel16;
-        private Panel panel21;
-        private ComboBox cbTableStatus;
-        private Label label9;
         private Panel panel19;
         private TextBox txtTableName;
         private Label label5;
